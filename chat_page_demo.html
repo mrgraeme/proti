@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+        }
+        .chat-window {
+            height: calc(100vh - 150px);
+            overflow-y: scroll;
+        }
+        .message-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Chat App</a>
+        </div>
+    </nav>
+
+    <!-- Main Chat Window -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- User List -->
+                <div class="card">
+                    <div class="card-header">
+                        Users
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">User 1</li>
+                        <li class="list-group-item">User 2</li>
+                        <li class="list-group-item">User 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <!-- Chat Area -->
+                <div class="card">
+                    <div class="card-header">
+                        Chat
+                    </div>
+                    <div class="card-body chat-window" id="chatWindow">
+                        <!-- Chat messages will go here -->
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input type="text" id="messageInput" class="form-control message-input" placeholder="Type a message...">
+                            <button class="btn btn-primary" id="sendButton">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Example JS for handling send button
+        document.getElementById('sendButton').addEventListener('click', function() {
+            const messageInput = document.getElementById('messageInput');
+            const chatWindow = document.getElementById('chatWindow');
+            const message = messageInput.value.trim();
+            
+            if (message) {
+                // Append the message to the chat window
+                const messageElement = document.createElement('div');
+                messageElement.textContent = message;
+                messageElement.classList.add('alert', 'alert-secondary', 'mt-2');
+                chatWindow.appendChild(messageElement);
+                chatWindow.scrollTop = chatWindow.scrollHeight; // Scroll to bottom
+                messageInput.value = ''; // Clear input field
+            }
+        });
+    </script>
+</body>
+</html>
