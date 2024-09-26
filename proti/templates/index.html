@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protein Q&A</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .logo {
+            width: 50px;  /* Adjust this size to fit your logo */
+            height: auto;
+        }
+        .header {
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-weight: Bold;
+            color:dimgray;
+            display: flex;
+            align-items: center;
+        }
+        .header h1 {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Header with logo and title -->
+        <div class="header">
+            <img src="{{ url_for('static', filename='net_logo.png') }}" alt="Logo" class="logo">
+            <h1>Proti.ai</h1>
+        </div>
+
+        <form method="POST">
+            <div class="mb-3">
+                <label for="question" class="form-label">Enter your question:</label>
+                <input type="text" class="form-control" id="question" name="question" placeholder="e.g. Tell me about ARID1A">
+            </div>
+            <button type="submit" class="btn btn-primary">Ask</button>
+        </form>
+
+        {% if question %}
+        <hr>
+        <h2>Question:</h2>
+        <p>{{ question }}</p>
+
+        <h3>Answer:</h3>
+        <p>{{ answer }}</p>
+        {% endif %}
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
